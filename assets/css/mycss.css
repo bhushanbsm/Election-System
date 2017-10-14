@@ -1,0 +1,88 @@
+body{
+	
+	background-color: rgb(225,225,220);
+}
+
+.result{
+	padding-top: 10px;
+	
+}
+
+.form-horizontal .form-group{
+	margin-left: 0px;
+	margin-right: 0px;
+}
+
+.modal-content{
+	background-color: #FFF;
+}
+
+.l{
+	padding-left: 70px;
+}
+
+.sidebanner{
+	width: 100%;
+	
+
+}
+
+.banner{
+	width: 100%;
+	max-height: 150px;
+}
+
+.tab-pane{
+	background-color: white;
+	border-radius: 10px;
+	border-top-left-radius: 0px;
+	min-height: 100px;
+}
+
+.mg-top{
+	margin-top: 20px;
+}
+.admin{
+	background-color: white;
+	border-radius: 10px;
+}
+
+.vote-pane{
+	background-color: white;
+	border-radius: 10px;
+	min-height: 100px;
+}
+
+.tab-link:hover{
+	text-decoration: none;
+}
+
+.bhide{
+	display: none;
+}
+
+.btn-size{
+	height: 42px;
+	margin-left: 70%;
+}
+
+.btn-my{
+	background-color: white;
+	border-radius: 4px;
+	
+}
+.bar{
+	background-color: black;
+}
+.line{
+	max-height: 5px;
+	min-height: 2px;
+	background-color: #ccc;
+}
+.mtop{
+	margin-top: 10px;
+}
+.m-thumb{
+	width: 140px;
+	height: 140px;
+}

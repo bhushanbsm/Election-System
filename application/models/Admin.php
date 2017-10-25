@@ -34,4 +34,44 @@ class Admin extends CI_model
 		$idata = array('vid' => $vdata['id'], 'name' => $data['mname'], 'count' => 0, 'description' => $data['mdescription'], 'img_path' => $data['mimage'] );
 		$this->db->insert('voting_count', $idata);
 	}
+
+	public function create_member_upload($data, $id)
+	{
+		$data['vid'] = $id;
+		$data['count'] = 0;
+		if($this->db->insert('voting_count', $data))
+		{
+			return TRUE;
+		}
+		else
+		{
+			return FALSE;
+		}
+	}
+// data update of member
+	public function update_member($data, $id)
+	{
+		
+		if($this->db->update('voting_count', $data, 'id = '.$id))
+		{
+			return TRUE;
+		}
+		else
+		{
+			return FALSE;
+		}
+	}
+
+	public function update_election($data, $vid)
+	{		
+		if($this->db->update('voting_name', $data, 'id = '.$vid))
+		{
+			return TRUE;
+		}
+		else
+		{
+			return FALSE;
+		}
+
+	}
 }

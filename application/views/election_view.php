@@ -9,6 +9,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	</head>
 	<body>
+
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-md-12">
@@ -36,22 +37,22 @@
 							<!-- Tab panes -->
 							  	<div class="tab-content">
 								    <div role="tabpanel" class="tab-pane active" id="election">
-								    	<div class="row mg-top">
+								    	<div class="row mg-top mg-l">
 								    		<div class="col-md-2">
-								    			<img src=<?=base_url('assets/images/').'thumb.png';?> class="m-thumb">
+								    			<img src=<?=base_url('assets/images/').$voting_table['img_path'];?> class="m-thumb">
 								    		</div>
-								    		<div class="col-md-9">
+								    		<div class="col-md-9 mg-l">
 								    			<div class="row">
-								    				<h1><?='name';?></h1>
+								    				<h1 class="text-capitalize"><?=$voting_table['voting_name'];?></h1>
 								    			</div>
 								    			<div class="row">
-								    				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad totam neque eveniet earum fugit tempora, deserunt incidunt maiores nam fuga? Fugiat dolorum aut ex harum, impedit nobis sapiente iure architecto.</p>
+								    				<p><?=$voting_table['description'];?>.</p>
 								    			</div>
 								    		</div>
 								    	</div>
 								    	<div class="row">
 								    		<div class="col-md-offset-10">
-								    			<button class="btn btn-xs btn-success">Update</button>
+								    			<button class="btn btn-xs btn-success" name="electupdate" type="button" data-toggle="modal" data-target="#electModal">Update</button>
 								    		</div>
 								    	</div>
 
@@ -64,22 +65,22 @@
 									    				<th>Description</th>
 									    				<th>Update</th>
 									    			</tr>
-									    			<?php $i=1; foreach($voting_name->result_array() as $value){?>
+									    			<?php $i = 1;?>
+									    			<?php foreach($candidate->result_array() as $value){?>
 									    			<tr>
 										    			<td><?=$i;?></td>
-										    			<td><?=$value['voting_name'];?></td>
-										    			<td><?=$i;?></td>
-										    			<td><a href="election_view/<?=$value['id'];?>" class="btn btn-primary" name="view" value=<?=$value['id'];?>>View</button></a>
-										    		<?php $i++; }?>
+										    			<td class="text-capitalize"><?=$value['name'];?> </td>
+										    			<td><?=$value['description'];?> </td>
+										    			<td><button class="btn btn-xs btn-primary" name="memberupdatebtn" type="button" data-toggle="modal" data-target="#memberModal" data-id=<?=$value['id'];?> >Update</button></td>
 									    			</tr>
-									    			
+									    			<?php $i++; }?>
 									    		</table>
 									    	</div>
 								    	</div>
 								    </div>
 						
 								    <div role="tabpanel" class="tab-pane" id="create">
-								    	<form enctype="multipart/form-data" method="POST" action=<?=base_url('index.php/admin_controller/create_election');?>>
+								    	<form enctype="multipart/form-data" method="POST" action=<?=base_url('index.php/admin_controller/create_member/'.$voting_table['id']);?>>
 									    	
 									    	<div class="row mg-top">
 									    		<div class="col-md-3 col-md-offset-1">
@@ -92,8 +93,6 @@
 									    			<label class="control-label">Photo</label>
 									    		</div>
 									    	</div>
-									    	
-									    	
 									    	<div class="mtop">
 										    	<div class="row">
 										    		<div class="col-md-3 col-md-offset-1">
@@ -107,7 +106,7 @@
 										    		</div>
 										    	</div>
 									    	</div>
-									    	<div class="row" id="row-add"> 
+									    	<div class="row mg-l" id="row-add"> 
 									    		<a name="add_more" id="add_more" class="col-md-offset-1 btn btn-primary">Add More</a>
 									    		<a name="remove" id="remove_btn" class="btn btn-primary">Remove</a>
 									    	</div>
@@ -123,9 +122,50 @@
 						</div>
 					</div>
 				</div>
-			</div>
+			</div><!--Row-->
+		</div> <!--Container Close-->
 
+		
+<!--Member data update Modal -->
+			<div class="modal fade" id="memberModal">
+					<div class="modal-dialog" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+									<span class="sr-only">Close</span>
+								</button>
+								<h4 class="modal-title">Member Data Update</h4>
+							</div>
+							<form enctype="multipart/form-data" method="POST" action="" id="mform">
+								<div class="modal-body">
+									<div class="row">
+									</div>
+									<div class="form-group">
+										<label class="control-label">Member Name</label>
+										<input type="text" name="name" id="mname_id" class="form-control">
+									</div>
+									<div class="form-group">
+										<label class="control-label">Description</label>
+										<textarea type="text" class="form-control" id="mdescription_id" name="description"></textarea>
+									</div>
+									<div class="form-group">
+										<label class="control-label">Photo</label>
+										<div class="row"><img src="" class="m-thumb mg-l mg-bottom-15"></div>
+										<input type="file" class="btn btn-success" name="image">
+									</div>
+								</div>
+							</form><!--Form close-->
+								<div class="modal-footer">
+									<button class="btn btn-primary" id="msubmit" name="membersubmit">Save</button>
+									<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+								</div>
+						</div><!-- /.modal-content -->
+					</div><!-- /.modal-dialog -->
+				</div><!-- /.modal -->
+<!--Member data update Modal Close-->
 
+<!--Error Modal -->
 			<div class="modal fade" id="infoModal">
 					<div class="modal-dialog modal-sm" role="document">
 						<div class="modal-content">
@@ -148,15 +188,63 @@
 						</div><!-- /.modal-content -->
 					</div><!-- /.modal-dialog -->
 				</div><!-- /.modal -->
+<!--Error Modal Close-->
 
-		</div>
+<!--Election data update Modal -->
+			<div class="modal fade" id="electModal">
+					<div class="modal-dialog" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+									<span class="sr-only">Close</span>
+								</button>
+								<h4 class="modal-title">Election Data Update</h4>
+							</div>
+							<form enctype="multipart/form-data" method="POST" action='<?=site_url('admin_controller/update_election/'.$voting_table['id']);?>' >
+								<div class="modal-body">
+									<div class="row">
+									</div>
+									<div class="form-group">
+										<label class="control-label">Election Name</label>
+										<input type="text" name="electname" class="form-control" value="<?=$voting_table['voting_name'];?>" >
+									</div>
+									<div class="form-group">
+										<label class="control-label">Description</label>
+										<textarea type="text" class="form-control" name="electdescription"> <?=$voting_table['description'];?> </textarea>
+									</div>
+									<div class="form-group">
+										<label class="control-label">Photo</label>
+										<div class="row"><img src="<?=base_url('assets/images/').$voting_table['img_path'];?>" class="m-thumb mg-l mg-bottom-15"></div>
+										<input type="file" class="btn btn-success" name="electimage">
+									</div>
+								</div>
+								<div class="modal-footer">
+									<button type="submit" class="btn btn-primary" name="electsubmit">Save</button>
+									<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+								</div>
+							</form>
+						</div><!-- /.modal-content -->
+					</div><!-- /.modal-dialog -->
+				</div><!-- /.modal -->
+<!--Election data update Modal Close-->
+
+
+
 
 
 <!-- Bootstrap Core JavaScript -->
     <script src="<?=base_url('/assets/js/jquery-3.2.1.js');?>"></script>
     <script src="<?=base_url('/assets/js/bootstrap.js');?>"></script>
+<!-- Jquery for adding new dynamic inputs for member -->
     <script>
+
     	$(document).ready(function(){
+//associative array for candidates data from php to js array indexed with candidates id
+    		var member = [];
+    		<?php foreach ($candidate->result_array() as $key => $value) { ?>
+    			member[<?=$value['id'];?>] = {'name':'<?=$value['name'];?>', 'description':'<?=$value['description'];?>', 'image':'<?=$value['img_path'];?>', 'vid':<?=$value['vid'];?>};
+    		<?php } ?>	
     	$i=1;
     	$('#add_more').click(function () {
     		$em1= '<div class="mremove">'+'<div class="row mg-top">'+'<div class="col-md-3 col-md-offset-1">'+
@@ -169,18 +257,35 @@
     		$('#row-add').before($em1);
 		});
 
+//manipulate modal to update member details		
+		$('#memberModal').on('show.bs.modal', function (event) {
+		  var button = $(event.relatedTarget); // Button that triggered the modal
+		  var id = button.data('id');
+		  var modal = $(this);
+		  modal.find('#mname_id').val(member[id]['name']);
+		  modal.find('#mdescription_id').val(member[id]['description']);
+		  modal.find('img').attr("src",'<?=base_url('assets/images/');?>' + member[id]['image']);
+		  modal.find('#msubmit').attr("data-id", id);
+		});
+
+//dynamicaly create uri for submiting form because id and vid is required
+		$("#msubmit").click(function(){
+		  	var id = $(this).data('id');
+			$("#mform").attr("action",'<?=site_url('admin_controller/update_member/'.$voting_table['id'].'/');?>' + id);
+			$("#mform").submit();
+		});
+
+//show modal if errors encountered
+		if( <?=$error_flag;?>)
+		{
+			$('#infoModal').modal('show');
+		}
+		
     });
+/*Jquery to remove dynamically added member input fields*/
     	$(document).on('click','#remove_btn',function() {
 	     $(".mremove:last").remove();
 		});
 	</script>
-
-
-	
-	<script>
-    	<?php if ($error_flag == TRUE){ ?>
-    		$('#infoModal').modal('show');
-    	<?php } ?>
-    </script>
 	</body>
 </html>

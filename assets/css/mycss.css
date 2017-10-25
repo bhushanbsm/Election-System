@@ -83,6 +83,14 @@ body{
 	margin-top: 10px;
 }
 .m-thumb{
+	border: solid 2px;
+	border-color: grey;
 	width: 140px;
 	height: 140px;
+}
+.mg-l{
+	margin-left: 15px;
+}
+.mg-bottom-15{
+	margin-bottom: 15px;
 }

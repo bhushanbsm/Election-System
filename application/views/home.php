@@ -111,7 +111,7 @@
 <!-- Bootstrap Core JavaScript -->
 	    <script src="<?=base_url('/assets/js/jquery-3.2.1.js');?>"></script>
 	    <script src="<?=base_url('/assets/js/bootstrap.js');?>"></script>
-	    <script> <?php if ($error_msg==TRUE): ?>
+	    <script> <?php if ($error_msg == TRUE): ?>
 	    	$('#myModal').modal('show');
 	    	
 	    <?php endif ?></script>

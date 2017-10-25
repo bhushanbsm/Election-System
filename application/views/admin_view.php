@@ -31,6 +31,7 @@
 							  	<ul class="nav nav-tabs nav-pills" role="tablist">
 								    <li role="presentation" class="active btn-my"><a href="#election" aria-controls="election" role="tab" data-toggle="tab">Elections</a></li>
 								    <li role="presentation" class="btn-my"><a href="#create" aria-controls="create" role="tab" data-toggle="tab">Create New</a></li>
+									<li role="presentation" class="btn-my"><a href="<?=site_url();?>">Log Out</a></li>							  	
 							  	</ul>
 
 							<!-- Tab panes -->
@@ -42,17 +43,16 @@
 									    			<tr>
 									    				<th>Sr. No.</th>
 									    				<th>Election Name</th>
-									    				<th>Number of Candidates</th>
 									    				<th>View</th>
 									    			</tr>
-									    			<?php $i=1; foreach($voting_name->result_array() as $value){?>
+									    			<?php $i = 1;?>
+									    			<?php foreach($voting_name->result_array() as $value){ ?>
 									    			<tr>
-									    			<td><?=$i;?></td>
-									    			<td><?=$value['voting_name'];?></td>
-									    			<td><?=$i;?></td>
-									    			<td><a href=<?=site_url('admin_controller/election_view/'.$value['id']);?> class="btn btn-primary" name="view" value=<?=$value['id'];?>>View</button></a>
-									    			<?php $i++; }?>
+									    			<td> <?=$i;?> </td>
+									    			<td> <?=$value['voting_name'];?> </td>
+									    			<td><a href=<?=site_url('admin_controller/election_view/'.$value['id']);?> class="btn btn-xs btn-primary">View</a></td>
 									    			</tr>
+									    			<?php $i++; }?>
 									    		</table>
 									    	</div>
 								    	</div>

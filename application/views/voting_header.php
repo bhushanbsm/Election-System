@@ -58,7 +58,7 @@
 									<div class="radio col-md-offset-6 col-md-3">
 										<div class="btn btn-group">
 										<label class="btn btn-success text-capitalize">
-											<input required type="radio" name="radiobutton" value=<?=$value['name'];?>><?=$value['name'];?>
+											<input required type="radio" name="radiobutton" value=<?=$value['id'];?>><?=$value['name'];?>
 										</label>
 										</div>
 									</div>
